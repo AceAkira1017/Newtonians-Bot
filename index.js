@@ -20,7 +20,7 @@ version: '1.16.5',
 
 password: 'Kai172309',
 
-owner: 'itzmeac31017',
+owner: '.itzmeac31017',
 
 reconnectDelay: 5000,
 
@@ -120,23 +120,39 @@ if (CONFIG.enableAutoChat) {
 
       "afk ako boi",  
 
-      "mining ta",  
+      "unang kagat, ginawa ko naman lahat",  
 
-      "brb guys",  
+      "unang talsik, bakit ag sakit?",
+      
+      "unang salang, saan ako nagkulang?", 
+      
+      "unang halo, bakit ka naglaho?",  
 
       "lag ba?",  
 
       "anyone online?",  
 
-      "grinding xp",  
+      "May compass ako, pero bat hindi na ikaw yung tinituro?",  
 
-      "its farm time",  
+      "may bagyo? o may bago?",  
 
-      "may kayo ba?",  
+      "may kayo ba?", 
+      
+      "naka spy glasses na ako pero malabo parin na maging tayo",
+      
+      "may protection 4 Naman pero bat ang sakit?",
+      
+      "May unbreaking III naman ako, pero bakit sinira mo tiwala ko?",
+      
+      "binigyan naman kita ng boots na may Feather Falling IV eh bat ang bilis mo parin mahulog sa iba",
+      
+      "kahit locator map ko di mahanap yung lugar ko sa puso mo",
+      
+      "Akala ko mas masakit ang full enchanted netherite sword kaso mas masakit pala ang pag alis nya",
 
-      "ako lang mareject ha!",  
+      "ano sa feeling mareject?",  
 
-      "crush kaba ng crush mo?"  
+      "crush kaba ng crush mo?"
 
     ]  
 
