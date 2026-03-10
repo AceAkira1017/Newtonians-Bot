@@ -4,9 +4,11 @@ const pvpPlugin = require('mineflayer-pvp').plugin
 
 const config = require('./config')
 const utils = require('./utils')
+
 const loadEvents = require('./events')
 const loadCommands = require('./commands')
 const loadCombat = require('./combat')
+const loadAutoTpa = require('./autoTpa')
 
 function startBot() {
   const bot = mineflayer.createBot({
@@ -24,6 +26,7 @@ function startBot() {
   loadEvents(bot, config)
   loadCommands(bot, config)
   loadCombat(bot, config)
+  loadAutoTpa(bot, config)
 
   bot.on('end', () => {
     console.log('🔄 Connection lost. Reconnecting in 5 seconds...')
