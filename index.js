@@ -7,8 +7,9 @@ const utils = require('./utils')
 
 const loadEvents = require('./events')
 const loadCommands = require('./commands')
-const loadCombat = require('./combat')
-const loadAutoTpa = require('./autoTpa')
+const loadCombat = require('./features/combat')
+const loadAutoTpa = require('./features/autoTpa')
+const loadAutoEat = require('./features/autoEat')
 
 function startBot() {
   const bot = mineflayer.createBot({
@@ -27,6 +28,7 @@ function startBot() {
   loadCommands(bot, config)
   loadCombat(bot, config)
   loadAutoTpa(bot, config)
+  loadAutoEat(bot)
 
   bot.on('end', () => {
     console.log('🔄 Connection lost. Reconnecting in 5 seconds...')

@@ -14,10 +14,6 @@ module.exports = (bot, config) => {
     ) {
       console.log(`✅ Auto accepting TPA from ${username}`)
       bot.chat('/tpaccept')
-      
-      setTimeout(() => {
-        bot.chat(`welcome ${username} 😊`)
-      }, 800)
     }
   })
 }
