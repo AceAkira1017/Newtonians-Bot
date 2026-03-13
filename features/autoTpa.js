@@ -1,5 +1,5 @@
 module.exports = (bot, config) => {
-  console.log('📍 AutoTPA module loaded - Will auto-accept all /tpa requests')
+  console.log(`[${bot.serverNickname}] 📍 AutoTPA module loaded - Will auto-accept all /tpa requests`)
 
   bot.on('chat', (username, message) => {
     if (username === bot.username || username === config.owner) return

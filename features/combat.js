@@ -28,7 +28,7 @@ module.exports = (bot, config) => {
     })
 
     if (attacker) {
-      console.log(`⚔ Fighting: ${attacker.username || attacker.name}`)
+      console.log(`[${bot.serverNickname}] ⚔ Fighting: ${attacker.username || attacker.name}`)
       bot.pvp.attack(attacker)
     }
   })

@@ -1,5 +1,5 @@
 module.exports = (bot) => {
-  console.log('🍖 AutoEat module loaded - Will eat when hunger is low')
+  console.log(`[${bot.serverNickname}] 🍖 AutoEat module loaded - Will eat when hunger is low`)
 
   let isEating = false
 
@@ -18,15 +18,15 @@ module.exports = (bot) => {
              name === 'sweet_berries'
     })
 
-    if (foodItems.length === 0) {
-      console.log('⚠ No food in inventory!')
+    if (foodItems.length === 0) /*{
+      console.log('⚠ No food in inventory!')*/
       return
-    }
+    //}
 
     const food = foodItems[0]
 
     isEating = true
-    console.log(`🍖 Eating ${food.name} (hunger: ${bot.food}/20)`)
+    console.log(`[${bot.serverNickname}] 🍖 Eating ${food.name} (hunger: ${bot.food}/20)`)
 
     bot.equip(food, 'hand').then(() => {
       bot.consume().then(() => {
