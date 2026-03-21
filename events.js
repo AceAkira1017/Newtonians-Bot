@@ -28,7 +28,7 @@ module.exports = (bot, config) => {
     if (config.enableAutoChat) {
       utils.addInterval(() => {
         const messages = [
-          "afk ako boi", "unang kagat, ginawa ko naman lahat", "unang talsik, bakit ag sakit?",
+          "afk ako boi", "unang kagat, ginawa ko naman lahat", "unang talsik, bakit ang sakit?",
           "unang salang, saan ako nagkulang?", "unang halo, bakit ka naglaho?", "lag ba?",
           "anyone online?", "May compass ako, pero bat hindi na ikaw yung tinituro?",
           "may bagyo? o may bago?", "may kayo ba?",

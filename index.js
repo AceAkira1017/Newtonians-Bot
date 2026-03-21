@@ -11,77 +11,11 @@ const loadCombat = require('./features/combat');
 const loadAutoTpa = require('./features/autoTpa');
 const loadAutoEat = require('./features/autoEat');
 
-
-async function pingServer(host, port = 25565, timeoutMs = 5000) {
-  return new Promise((resolve) => {
-    const net = require('net');
-    const socket = new net.Socket();
-    let timedOut = false;
-
-    const timeout = setTimeout(() => {
-      timedOut = true;
-      socket.destroy();
-      resolve({ online: false, reason: 'Timeout' });
-    }, timeoutMs);
-
-    socket.setTimeout(timeoutMs);
-
-    socket.connect(port, host, () => {
-      if (timedOut) return;
-
-      const handshake = Buffer.from([
-        0x00,
-        0x04, 0x09, 0xFE, 0x01,
-        host.length, ...Buffer.from(host),
-        port >> 8, port & 0xFF,
-        0x01
-      ]);
-
-      const statusRequest = Buffer.from([0x01, 0x00]);
-
-      socket.write(handshake);
-      socket.write(statusRequest);
-    });
-
-    let data = Buffer.alloc(0);
-    socket.on('data', (chunk) => {
-      data = Buffer.concat([data, chunk]);
-      if (data.length > 5 && data[0] > 0) {
-        clearTimeout(timeout);
-        socket.destroy();
-        resolve({ online: true });
-      }
-    });
-
-    socket.on('error', () => {
-      clearTimeout(timeout);
-      socket.destroy();
-      resolve({ online: false, reason: 'Connection error' });
-    });
-
-    socket.on('close', () => {
-      clearTimeout(timeout);
-      if (!timedOut && data.length === 0) {
-        resolve({ online: false, reason: 'No response' });
-      }
-    });
-  });
-}
-
 async function createAndStartBot(serverConfig) {
   const fullConfig = { ...config.common, ...serverConfig };
   const nickname = fullConfig.nickname || fullConfig.username;
 
-  console.log(`[${nickname}] Checking server status...`);
-
-  const pingResult = await pingServer(fullConfig.host, fullConfig.port || 25565);
-
-  if (!pingResult.online) {
-    console.log(`[\( {nickname}] Server appears OFFLINE ( \){pingResult.reason || 'unknown'}). Skipping.`);
-    return;
-  }
-
-  console.log(`[${nickname}] Server is online. Starting bot as ${fullConfig.username}...`);
+  console.log(`[${nickname}] Starting bot as ${fullConfig.username}...`);
 
   const bot = mineflayer.createBot({
     host: fullConfig.host,
@@ -123,13 +57,8 @@ async function createAndStartBot(serverConfig) {
   bot.on('error', err => console.log('Error:', err.message));
 }
 
-async function startAllBots() {
-  for (let i = 0; i < config.servers.length; i++) {
-    await createAndStartBot(config.servers[i]);
-    if (i < config.servers.length - 1) {
-      await new Promise(r => setTimeout(r, 3000));
-    }
-  }
-}
-
-startAllBots().catch(err => console.error('Startup error:', err));
+config.servers.forEach((server, index) => {
+  setTimeout(() => {
+    createAndStartBot(server);
+  }, index * 3000); 
+});
